@@ -1,13 +1,16 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import axios from './axios';
+import axiosInstance from './axios.js';
 
 // 앱 생성
 const app = createApp(App);
 
-// Axios를 전역 속성으로 설정
-app.config.globalProperties.$axios = axios;
+// router를 먼저 설정
+app.use(router);
 
-// router와 함께 앱을 마운트
-app.use(router).mount('#app');
+// Axios 인스턴스를 전역으로 등록
+app.config.globalProperties.$axios = axiosInstance;
+
+// 앱 마운트
+app.mount('#app');

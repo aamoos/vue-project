@@ -12,6 +12,7 @@ const route = useRoute()
 onMounted(() => {
   // URL에서 토큰 추출
   const token = route.query.accessToken
+
   if (token) {
     localStorage.setItem('accessToken', token) // 토큰 저장
     router.push('/main') // 홈으로 리디렉트

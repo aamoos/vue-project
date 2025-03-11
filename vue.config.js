@@ -1,7 +1,15 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true,
   devServer: {
-    port: 3000, // 기본 포트를 3000으로 설정
-  },
+    port: 3000,  // Vue 개발 서버 포트 설정
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080', // Spring 서버 주소
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '' // '/api' 경로를 빈 문자열로 변환
+        }
+      }
+    }
+  }
 })

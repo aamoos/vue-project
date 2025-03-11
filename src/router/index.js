@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import LoginPage from '../components/views/LoginPage.vue';
-import OauthRedirect from '../components/views/OauthRedirect.vue'
+import OauthRedirect from '../components/views/OauthPage.vue'
 import MainPage from '../components/views/MainPage.vue'
 
 const routes = [
@@ -23,7 +23,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: createWebHistory(),
     routes
 });
 
