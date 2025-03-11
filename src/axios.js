@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { useRouter} from 'vue-router'
 
 // localStorage에서 accessToken을 가져옵니다.
 const accessToken = localStorage.getItem('accessToken');
+const router = useRouter()
 
 // Axios 인스턴스 생성
 const axiosInstance = axios.create({
@@ -20,7 +22,7 @@ axiosInstance.interceptors.response.use(
             // 토큰을 갱신하거나 로그아웃 처리
             localStorage.removeItem('accessToken');
             // 로그인 페이지로 리디렉션
-            window.location.href = '/';
+            router.push('/')
         }
         return Promise.reject(error);
     }
