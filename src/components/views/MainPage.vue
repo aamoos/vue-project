@@ -17,9 +17,17 @@ export default {
     this.fetchUserData();
   },
   methods: {
-    fetchUserData() {
+     fetchUserData() {
+      // 로컬 스토리지에서 accessToken 가져오기
+      const accessToken = localStorage.getItem('accessToken');
+
+      // axios 요청 시 헤더에 Authorization 추가
       this.$axios
-        .get('/api/users')
+        .get('/api/users', {
+          headers: {
+            Authorization: accessToken ? `Bearer ${accessToken}` : '',
+          },
+        })
         .then((response) => {
           this.data = response.data;
         })
@@ -28,7 +36,7 @@ export default {
         });
     },
     logout() {
-      this.$axios
+       this.$axios
         .delete('/auth/logout')
         .then((response) => {
           console.log('Logged out successfully', response);
