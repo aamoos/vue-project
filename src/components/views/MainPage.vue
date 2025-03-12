@@ -32,6 +32,7 @@ export default {
         .delete('/auth/logout')
         .then((response) => {
           console.log('Logged out successfully', response);
+          localStorage.removeItem('accessToken');
           this.$router.push('/');
         })
         .catch((error) => {
